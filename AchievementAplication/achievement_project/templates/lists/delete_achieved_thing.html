@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">達成項目削除</h1>
+    <div style="text-align:center">
+      <img style="max-width: 40%; max-height: 40vh;" src={{ object.picture.url }}>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7" style="text-align: center; padding: 40px 0px 0px 0px">
+        <h2>{{ object.name }}を削除しますか？</h2>
+        <p style="margin: 0px 0px 100px 0px; color:red;">※削除した後は元に戻せません</p>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-danger btn-lg btn-block">削除</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center; margin:40px 0px 0px 0px;">
+      <a class="btn btn-info btn-lg" href="{% url 'lists:achieved_thing_detail' pk=object.id %}">戻る</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

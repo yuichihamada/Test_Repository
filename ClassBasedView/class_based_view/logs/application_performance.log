@@ -1,0 +1,1 @@
+2024-04-19 23:50:45,883 INFO [/Users/hamadayuichi/Desktop/Python/ClassBasedView/class_based_view/class_based_view/middleware.py:26] <bound method HttpRequest.get_full_path of <WSGIRequest: GET '/store/delete_book/6'>>: 0.003592252731323242s

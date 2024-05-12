@@ -1,0 +1,10 @@
+2024-04-18 21:41:58,809-57846-WARNING-warning.log
+2024-04-18 21:41:58,809-57846-ERROR-error.log
+2024-04-18 21:41:58,809-57846-CRITICAL-critical.log
+2024-04-18 21:41:58,809-57846-ERROR-user = Taro raised error
+2024-04-18 21:41:58,809-57846-ERROR-division by zero
+Traceback (most recent call last):
+  File "/Users/hamadayuichi/Desktop/Python/logging-sample/01_logging_sample.py", line 21, in <module>
+    c = a / b
+        ~~^~~
+ZeroDivisionError: division by zero

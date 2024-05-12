@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">達成リスト</h1>
+    <div class="col-10 offset-1">
+      <form method="get" action="{% url 'lists:achieved_list' %}">
+        <p>ワードで検索: <input type="text" name="item_name" value="{{ thing_name }}"/><p>
+        <p>時期で並び替え:
+          近い順<input type="radio" name="order_by_date" value="1" {% if ascending %}checked{% endif %}>
+          遠い順<input type="radio" name="order_by_date" value="2" {% if descending %}checked{% endif %}>
+        </p>
+        <p>タイプで絞り込み:
+          ほしいもの<input type="radio" name="type_filter" value="1" {% if wantitem %}checked{% endif %}>
+          やりたいこと<input type="radio" name="type_filter" value="2" {% if todothing %}checked{% endif %}>
+        </p>
+        <p><input type="submit" value="実行する"/></p>
+      </form>
+      <table class="table table-striped table-bordered table-light">
+        <thead>
+          <tr>
+            <td>名前</td>
+            <td>金額</td>
+            <td>達成日</td>
+            <td>タイプ</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for thing in object_list %}
+            <tr>
+              <td><a href="{% url 'lists:achieved_thing_detail' pk=thing.id %}">{{ thing.name }}</a></td>
+              <td>{{ thing.price }}円</td>
+              <td>{{ thing.achieved_date|date:"Y年m月d日" }}</td>
+              <td>
+                {% if thing.type == "WantItem" %}
+                  ほしいもの
+                {% elif thing.type == "ToDoThing" %}
+                  やりたいこと
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <h3 class="offset-9">合計: {{ total_price }}円</h3>
+    <br>
+    <div style="text-align: center">
+      <a class="btn btn-info btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:my_page' %}">マイページに戻る</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

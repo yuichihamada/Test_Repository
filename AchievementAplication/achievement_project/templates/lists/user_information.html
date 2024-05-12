@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">ユーザー情報</h1>
+    <div style="text-align: center;">
+      <img style="max-width: 45%; max-height: 80vh;" src={{ object.picture.url }}>
+    </div>
+    <br>
+    <table style="margin: auto; font-size: 20px;">
+      <tr>
+        <td style="padding: 5px;"><strong>名前</strong></td>
+        <td style="padding: 5px;">{{ object.username }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 5px;"><strong>メールアドレス</strong></td>
+        <td style="padding: 5px;">{{ object.email }}</td>
+      </tr>
+      <tr>
+        <td style="padding: 5px;"><strong>ひとこと</strong></td>
+        <td style="padding: 5px;">{{ object.introduction }}</td>
+      </tr>
+    </table>
+    <br>
+    <div style="text-align: center">
+      <a class="btn btn-info btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:update_user' pk=request.user.id %}">ユーザー情報編集へ</a>
+      <a class="btn btn-info btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:my_page' %}">マイページに戻る</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

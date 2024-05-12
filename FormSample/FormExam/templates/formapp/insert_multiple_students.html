@@ -1,0 +1,9 @@
+{% extends "formapp/base.html" %}
+{% block title %}<h2>メンバー一括追加画面</h2>{% endblock %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ insert_form.as_p }}
+      <input type="submit" value="メンバー一括追加">
+    </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "formapp/base.html" %}
+{% block title %}<h2>メンバー挿入画面</h2>{% endblock %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="保存">
+    </form>
+    {% if student %}
+      <p>name: {{ student.name }} </p>
+      <p>age: {{ student.age }}</p>
+      <img src="{{ student.picture.url }}">
+    {% endif %}
+{% endblock %}

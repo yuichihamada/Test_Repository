@@ -1,0 +1,11 @@
+id,user,address,total_price
+1,test@mail.com,,165000
+2,test@mail.com,123-1234 神奈川県 ABC Street 123,165000
+3,test@mail.com,123-1234 新潟県 ABC Street 123,75000
+4,test@mail.com,123-1234 福井県 ABC Street 123,60000
+5,test@mail.com,123-1234 東京都 ABC Street 123,30000
+6,test@mail.com,123-1234 東京都 ABC Street 123,30000
+7,test@mail.com,123-1234 大阪府 ABC Street 123,30000
+8,test@mail.com,123-1234 東京都 ABC Street 123,45000
+9,test@mail.com,123-1234 東京都 ABC Street 123,30000
+10,test@mail.com,123-1234 東京都 ABC Street 123,75000

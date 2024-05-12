@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">やりたいこと達成画面</h1>
+    <div style="text-align:center">
+      <img style="max-width: 40%; max-height: 40vh;" src={{ todo_thing.picture.url }}>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7" style="padding: 40px 0px 0px 0px">
+        <h2 class="text-center">{{ todo_thing }}を達成済みにしますか？</h2>
+        <p  class="text-center" style="margin: 0px 0px 50px 0px; color:red;">※達成済みにするとやりたいことリストから削除されます</p>
+        <form method="POST">
+          {% csrf_token %}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <ul>
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="id_price">かかった金額(円)</label>
+            <br>
+            <input type="number" name="price" class="form-control" id="id_price">
+          </div>
+          <div class="form-group">
+            <label for="id_achieved_date">達成した日</label>
+            <br>
+            <input type="date" name="achieved_date" class="form-control" id="id_achieved_date">
+          </div>
+          <button style="margin-top: 30px" type="submit" class="btn btn-pink btn-lg btn-block">達成</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center; margin:40px 0px 0px 0px;">
+      <a class="btn btn-info btn-lg" href="{% url 'lists:thing_detail' pk=todo_thing.id %}">戻る</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

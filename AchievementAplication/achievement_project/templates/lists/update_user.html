@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">ユーザー情報編集</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <ul>
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="id_username">名前</label>
+            <br>
+            <input type="text" name="username" class="form-control" id="id_username" value="{{ user.username }}">
+          </div>
+          <div class="form-group">
+            <label for="id_email">メールアドレス</label>
+            <br>
+            <input type="email" name="email" class="form-control" id="id_email" value="{{ user.email }}">
+          </div>
+          <div class="form-group">
+            <label for="id_picture">写真</label>
+            <br>
+            {{ form.picture }}
+          </div>
+          <div class="form-group">
+            <label for="id_introduction">ひとこと</label>
+            <br>
+            <textarea name="introduction" class="form-control" id="id_introduction" rows="5">{{ user.introduction }}</textarea>
+          </div>
+          <button type="submit" class="btn btn-info btn-lg btn-block">更新</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center">
+      <a class="btn btn-info btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:user_information' pk=request.user.id %}">戻る</a>
+      <a class="btn btn-danger btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:delete_user' pk=request.user.id %}">アカウントを削除する</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

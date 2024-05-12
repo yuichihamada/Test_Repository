@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height: 100vh; display: flex; flex-direction: column;">
+  <div style="text-align:center;  background-color: #4CAF50; padding: 20px;">
+    <h1 style="font-size: 64px; color: white; font-family: 'Arial', sans-serif;">Achievement</h1>
+    <br>
+    <p>あなたの「ほしいもの」「やりたいこと」を管理するアプリケーションです</p>
+    <br>
+    <p>金額や達成予定日ごとに整理して、目標達成に役立てましょう！！</p>
+  </div>
+  <div style="flex-grow: 1; text-align:center; padding: 40px;  background-image: url('/media/achievement.png/'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <a href="{% url 'accounts:user_login' %}" class="btn btn-info btn-lg" style="margin: 20px;">ログイン</a>
+    <a href="{% url 'accounts:regist' %}" class="btn btn-info btn-lg" style="margin: 20px;">新規登録</a>
+  </div>
+</div>
+{% endblock %}

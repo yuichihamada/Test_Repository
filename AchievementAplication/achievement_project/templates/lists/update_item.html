@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="height:100%; background-color: #CDEAAB; padding: 20px;">
+  <div class="container">
+    <h1 class="text-center py-4" style="font-weight: bold;">ほしいもの編集</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <ul>
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <div class="form-group">
+            <label for="id_name">ほしいものの名前</label>
+            <br>
+            <input type="text" name="name" class="form-control" id="id_name" value="{{ object.name }}">
+          </div>
+          <div class="form-group">
+            <label for="id_detail">詳細</label>
+            <br>
+            <textarea name="detail" class="form-control" id="id_detail"rows="5">{{ object.detail }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="id_price">値段(円)</label>
+            <br>
+            <input type="number" name="price" class="form-control" id="id_price" value="{{ object.price }}">
+          </div>
+          <div class="form-group">
+            <label for="id_target_date">いつまでに</label>
+            <br>
+            <input type="date" name="target_date" class="form-control" id="id_target_date" value="{{ object.target_date|date:'Y-m-d' }}">
+          </div>
+          <div class="form-group">
+            <label for="id_reason">ほしい理由</label>
+            <br>
+            <textarea name="reason" class="form-control" id="id_reason" rows="5">{{ object.reason }}</textarea>
+          </div>
+          <div class="form-group">
+            <label for="id_picture">写真</label>
+            <br>
+            {{ form.picture }}
+          </div>
+          <button type="submit" class="btn btn-info btn-lg btn-block">変更する</button>
+        </form>
+      </div>
+    </div>
+    <div style="text-align: center">
+      <a class="btn btn-danger btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:delete_item' pk=object.id %}">ほしいものを削除する</a>
+    </div>
+    <div style="text-align: center; margin-top:30px">
+      <a class="btn btn-info btn-lg" style="margin: 20px; width: 235px" href="{% url 'lists:item_detail' pk=object.id %}">戻る</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
